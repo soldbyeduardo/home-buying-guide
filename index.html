@@ -372,7 +372,7 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: var(--card-bg);
+      background: #DBEAFE;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -492,7 +492,7 @@
     .step-icon-wrap {
       width: 120px;
       height: 120px;
-      background: var(--card-bg);
+      background: #DBEAFE;
       border: 2px solid var(--gold);
       border-radius: 50%;
       display: flex;
@@ -1219,23 +1219,47 @@
 
     /* ===== FINAL RECONSTRUCTION — SCREEN BY SCREEN ===== */
 
-    /* WELCOME DESKTOP: gradient-blended house photo (unified, not two hard halves) */
+    /* WELCOME DESKTOP: unified dark hero — house SVG floats on right over gradient */
     @media (min-width: 768px) {
+      #screen-welcome {
+        position: relative;
+      }
       #screen-welcome::after {
         background:
-          linear-gradient(to right, #071634 0%, rgba(7,22,52,0.80) 25%, rgba(7,22,52,0.30) 60%, rgba(7,22,52,0.10) 100%),
-          url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&auto=format&fit=crop&q=80') center / cover no-repeat;
+          radial-gradient(ellipse at 52% 62%, rgba(201,160,40,0.22) 0%, transparent 55%),
+          radial-gradient(ellipse at 75% 30%, rgba(201,160,40,0.08) 0%, transparent 38%),
+          linear-gradient(145deg, #0b2050 0%, #071634 100%);
+      }
+      /* Show house SVG absolutely positioned on the right panel */
+      .welcome-inner > svg[viewBox="0 0 200 160"] {
+        display: block !important;
+        position: absolute;
+        right: 3%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 400px !important;
+        max-width: 42% !important;
+        height: auto !important;
+        margin: 0 !important;
+        z-index: 2;
+        pointer-events: none;
+        filter: drop-shadow(0 20px 60px rgba(201,160,40,0.40)) !important;
+        opacity: 0.92;
       }
     }
 
-    /* WELCOME MOBILE: house photo blends in from the bottom */
+    /* WELCOME MOBILE: solid navy — SVG shows centered in flow */
     @media (max-width: 767px) {
       #screen-welcome {
-        background:
-          linear-gradient(to bottom, #071634 40%, rgba(7,22,52,0.88) 68%, rgba(7,22,52,0.55) 100%),
-          url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&auto=format&fit=crop&q=80') bottom center / cover no-repeat;
+        background: linear-gradient(160deg, #071634 0%, #0d1e4a 60%, #071634 100%);
       }
       #screen-welcome::after { display: none; }
+      .welcome-inner > svg[viewBox="0 0 200 160"] {
+        display: block;
+        width: 160px;
+        height: auto;
+        margin: 0 auto 24px;
+      }
     }
 
     /* OVERVIEW: centered header + stronger card modules */
@@ -1320,7 +1344,7 @@
 
     <div class="welcome-inner">
       <!-- House SVG illustration -->
-      <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto;margin:0 auto 24px;display:block;filter:drop-shadow(0 8px 32px rgba(201,160,40,0.25))">
+      <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto;margin:0 auto 24px;filter:drop-shadow(0 8px 32px rgba(201,160,40,0.25))">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#0d1e4a"/>
@@ -1437,7 +1461,7 @@
         <!-- Step 1 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-1')">
           <div class="step-num-circle">1</div>
-          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="7" y="3" width="18" height="24" rx="2" fill="#C9A028" fill-opacity="0.15" stroke="#C9A028" stroke-width="1.8"/><line x1="11" y1="10" x2="21" y2="10" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="14" x2="21" y2="14" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="17" y2="18" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><path d="M11 22 C13 20 15 24 17 22 C19 20 21 23 21 23" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" fill="none"/><polyline points="20,3 25,8 20,8" fill="none" stroke="#C9A028" stroke-width="1.5"/></svg></div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="8" y="3" width="17" height="23" rx="2" fill="#EBF4FF" stroke="#1e40af" stroke-width="1.5"/><path d="M19 3 L25 9 L19 9 Z" fill="#C9A028"/><rect x="11" y="12" width="10" height="1.8" rx="0.9" fill="#1e3a8a"/><rect x="11" y="16" width="10" height="1.8" rx="0.9" fill="#1e3a8a"/><rect x="11" y="20" width="6" height="1.8" rx="0.9" fill="#1e3a8a"/><path d="M11 24.5 C12.5 23 13.5 25.5 15 24.5 C16.5 23.5 17.5 25 17.5 25" stroke="#C9A028" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
           <div class="step-card-title">
             <span class="en">Escrow Opened</span>
             <span class="es">Escrow Abierto</span>
@@ -1452,7 +1476,7 @@
         <!-- Step 2 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-2')">
           <div class="step-num-circle">2</div>
-          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="13" cy="13" r="9" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.1"/><line x1="20" y1="20" x2="27" y2="27" stroke="#C9A028" stroke-width="2.5" stroke-linecap="round"/><rect x="9" y="13" width="8" height="6" rx="1" fill="#071634" fill-opacity="0.18" stroke="#071634" stroke-width="1.2"/><polygon points="8,13 13,9 18,13" fill="#C9A028" fill-opacity="0.85"/></svg></div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="13" cy="13" r="9" fill="#DBEAFE" stroke="#1e40af" stroke-width="2"/><rect x="9" y="13" width="9" height="6" rx="1" fill="#1e3a8a" fill-opacity="0.15"/><polygon points="9,13 13,9.5 17,13" fill="#1e40af" fill-opacity="0.9"/><rect x="11" y="16" width="4" height="2.5" rx="0.5" fill="#1e3a8a" fill-opacity="0.35"/><rect x="20" y="19.5" width="9" height="3.5" rx="1.75" transform="rotate(45 20 19.5)" fill="#1e40af"/></svg></div>
           <div class="step-card-title">
             <span class="en">Inspection Period</span>
             <span class="es">Período de Inspección</span>
@@ -1467,7 +1491,7 @@
         <!-- Step 3 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-3')">
           <div class="step-num-circle">3</div>
-          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="4" y="5" width="24" height="22" rx="2" fill="#C9A028" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.8"/><line x1="4" y1="14" x2="28" y2="14" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><line x1="16" y1="5" x2="16" y2="27" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><rect x="7" y="8" width="10" height="9" rx="1" fill="none" stroke="#C9A028" stroke-width="1.8" stroke-dasharray="2,2"/><circle cx="22" cy="11" r="2.5" fill="#C9A028"/><line x1="22" y1="13.5" x2="22" y2="17" stroke="#C9A028" stroke-width="1.5"/></svg></div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="3" y="4" width="22" height="22" rx="2.5" fill="#DBEAFE" stroke="#1e40af" stroke-width="1.5"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1e40af" stroke-width="0.8" opacity="0.3"/><line x1="14" y1="4" x2="14" y2="26" stroke="#1e40af" stroke-width="0.8" opacity="0.3"/><rect x="6" y="7" width="10" height="9" rx="1" fill="#1e40af" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.5" stroke-dasharray="2,1.5"/><circle cx="24" cy="9" r="3.5" fill="#EF4444"/><circle cx="24" cy="9" r="1.5" fill="white"/><line x1="24" y1="12.5" x2="24" y2="17" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <div class="step-card-title">
             <span class="en">Survey</span>
             <span class="es">Estudio Topográfico</span>
@@ -1482,7 +1506,7 @@
         <!-- Step 4 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-4')">
           <div class="step-num-circle">4</div>
-          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="5" y="16" width="16" height="12" rx="1" fill="#C9A028" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.8"/><polygon points="3,16 13,7 23,16" fill="#C9A028" fill-opacity="0.8"/><rect x="10" y="22" width="6" height="6" rx="1" fill="#071634" fill-opacity="0.25"/><rect x="23" y="22" width="3" height="6" rx="1" fill="#071634" fill-opacity="0.3"/><rect x="27" y="19" width="3" height="9" rx="1" fill="#C9A028"/><polyline points="22,22 25,17 28,17" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="4" y="16" width="15" height="12" rx="1.5" fill="#FEF3C7" stroke="#C9A028" stroke-width="1.5"/><polygon points="2,16 11.5,7 21,16" fill="#C9A028" fill-opacity="0.9"/><rect x="8.5" y="21" width="5.5" height="7" rx="1" fill="#1e3a8a" fill-opacity="0.2"/><rect x="21" y="22" width="3" height="6" rx="1" fill="#1e3a8a" fill-opacity="0.3"/><rect x="25.5" y="18.5" width="3" height="9.5" rx="1" fill="#C9A028"/><polyline points="21,21 24,16.5 28,16.5" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
           <div class="step-card-title">
             <span class="en">Appraisal</span>
             <span class="es">Avalúo</span>
@@ -1497,7 +1521,7 @@
         <!-- Step 5 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-5')">
           <div class="step-num-circle">5</div>
-          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="11" cy="13" r="6" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.15"/><line x1="17" y1="13" x2="28" y2="13" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="13" x2="23" y2="17" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="13" x2="27" y2="16" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><rect x="17" y="19" width="10" height="8" rx="1" fill="#071634" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.5"/><polygon points="16,19 22,15 28,19" fill="#C9A028" fill-opacity="0.75"/></svg></div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="11" cy="16" r="6.5" fill="#FEF3C7" stroke="#C9A028" stroke-width="2"/><circle cx="11" cy="16" r="3" fill="none" stroke="#C9A028" stroke-width="2"/><rect x="16.5" y="14.5" width="13" height="3" rx="1.5" fill="#C9A028"/><rect x="24" y="17.5" width="2.5" height="3" rx="1" fill="#C9A028"/><rect x="20" y="17.5" width="2.5" height="2" rx="1" fill="#C9A028"/><rect x="16" y="4" width="11" height="8.5" rx="1" fill="#EBF4FF" stroke="#1e40af" stroke-width="1.2"/><polygon points="14.5,5 21.5,1.5 28.5,5" fill="#1e40af" fill-opacity="0.8"/></svg></div>
           <div class="step-card-title">
             <span class="en">Closing</span>
             <span class="es">Cierre</span>
@@ -1538,7 +1562,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="7" y="3" width="18" height="24" rx="2" fill="#C9A028" fill-opacity="0.15" stroke="#C9A028" stroke-width="1.8"/><line x1="11" y1="10" x2="21" y2="10" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="14" x2="21" y2="14" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="17" y2="18" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><path d="M11 22 C13 20 15 24 17 22 C19 20 21 23 21 23" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" fill="none"/><polyline points="20,3 25,8 20,8" fill="none" stroke="#C9A028" stroke-width="1.5"/></svg></div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="8" y="3" width="17" height="23" rx="2" fill="#EBF4FF" stroke="#1e40af" stroke-width="1.5"/><path d="M19 3 L25 9 L19 9 Z" fill="#C9A028"/><rect x="11" y="12" width="10" height="1.8" rx="0.9" fill="#1e3a8a"/><rect x="11" y="16" width="10" height="1.8" rx="0.9" fill="#1e3a8a"/><rect x="11" y="20" width="6" height="1.8" rx="0.9" fill="#1e3a8a"/><path d="M11 24.5 C12.5 23 13.5 25.5 15 24.5 C16.5 23.5 17.5 25 17.5 25" stroke="#C9A028" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
           <h2 class="step-title">
             <span class="en">Escrow Opened</span>
             <span class="es">Escrow Abierto</span>
@@ -1646,7 +1670,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="13" cy="13" r="9" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.1"/><line x1="20" y1="20" x2="27" y2="27" stroke="#C9A028" stroke-width="2.5" stroke-linecap="round"/><rect x="9" y="13" width="8" height="6" rx="1" fill="#071634" fill-opacity="0.18" stroke="#071634" stroke-width="1.2"/><polygon points="8,13 13,9 18,13" fill="#C9A028" fill-opacity="0.85"/></svg></div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="13" cy="13" r="9" fill="#DBEAFE" stroke="#1e40af" stroke-width="2"/><rect x="9" y="13" width="9" height="6" rx="1" fill="#1e3a8a" fill-opacity="0.15"/><polygon points="9,13 13,9.5 17,13" fill="#1e40af" fill-opacity="0.9"/><rect x="11" y="16" width="4" height="2.5" rx="0.5" fill="#1e3a8a" fill-opacity="0.35"/><rect x="20" y="19.5" width="9" height="3.5" rx="1.75" transform="rotate(45 20 19.5)" fill="#1e40af"/></svg></div>
           <h2 class="step-title">
             <span class="en">Inspection Period</span>
             <span class="es">Período de Inspección</span>
@@ -1747,7 +1771,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="4" y="5" width="24" height="22" rx="2" fill="#C9A028" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.8"/><line x1="4" y1="14" x2="28" y2="14" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><line x1="16" y1="5" x2="16" y2="27" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><rect x="7" y="8" width="10" height="9" rx="1" fill="none" stroke="#C9A028" stroke-width="1.8" stroke-dasharray="2,2"/><circle cx="22" cy="11" r="2.5" fill="#C9A028"/><line x1="22" y1="13.5" x2="22" y2="17" stroke="#C9A028" stroke-width="1.5"/></svg></div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="3" y="4" width="22" height="22" rx="2.5" fill="#DBEAFE" stroke="#1e40af" stroke-width="1.5"/><line x1="3" y1="14" x2="25" y2="14" stroke="#1e40af" stroke-width="0.8" opacity="0.3"/><line x1="14" y1="4" x2="14" y2="26" stroke="#1e40af" stroke-width="0.8" opacity="0.3"/><rect x="6" y="7" width="10" height="9" rx="1" fill="#1e40af" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.5" stroke-dasharray="2,1.5"/><circle cx="24" cy="9" r="3.5" fill="#EF4444"/><circle cx="24" cy="9" r="1.5" fill="white"/><line x1="24" y1="12.5" x2="24" y2="17" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <h2 class="step-title">
             <span class="en">Survey (Land Survey)</span>
             <span class="es">Estudio Topográfico</span>
@@ -1834,7 +1858,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="5" y="16" width="16" height="12" rx="1" fill="#C9A028" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.8"/><polygon points="3,16 13,7 23,16" fill="#C9A028" fill-opacity="0.8"/><rect x="10" y="22" width="6" height="6" rx="1" fill="#071634" fill-opacity="0.25"/><rect x="23" y="22" width="3" height="6" rx="1" fill="#071634" fill-opacity="0.3"/><rect x="27" y="19" width="3" height="9" rx="1" fill="#C9A028"/><polyline points="22,22 25,17 28,17" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="4" y="16" width="15" height="12" rx="1.5" fill="#FEF3C7" stroke="#C9A028" stroke-width="1.5"/><polygon points="2,16 11.5,7 21,16" fill="#C9A028" fill-opacity="0.9"/><rect x="8.5" y="21" width="5.5" height="7" rx="1" fill="#1e3a8a" fill-opacity="0.2"/><rect x="21" y="22" width="3" height="6" rx="1" fill="#1e3a8a" fill-opacity="0.3"/><rect x="25.5" y="18.5" width="3" height="9.5" rx="1" fill="#C9A028"/><polyline points="21,21 24,16.5 28,16.5" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
           <h2 class="step-title">
             <span class="en">Appraisal</span>
             <span class="es">Avalúo</span>
@@ -1928,7 +1952,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="11" cy="13" r="6" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.15"/><line x1="17" y1="13" x2="28" y2="13" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="13" x2="23" y2="17" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="13" x2="27" y2="16" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><rect x="17" y="19" width="10" height="8" rx="1" fill="#071634" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.5"/><polygon points="16,19 22,15 28,19" fill="#C9A028" fill-opacity="0.75"/></svg></div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="11" cy="16" r="6.5" fill="#FEF3C7" stroke="#C9A028" stroke-width="2"/><circle cx="11" cy="16" r="3" fill="none" stroke="#C9A028" stroke-width="2"/><rect x="16.5" y="14.5" width="13" height="3" rx="1.5" fill="#C9A028"/><rect x="24" y="17.5" width="2.5" height="3" rx="1" fill="#C9A028"/><rect x="20" y="17.5" width="2.5" height="2" rx="1" fill="#C9A028"/><rect x="16" y="4" width="11" height="8.5" rx="1" fill="#EBF4FF" stroke="#1e40af" stroke-width="1.2"/><polygon points="14.5,5 21.5,1.5 28.5,5" fill="#1e40af" fill-opacity="0.8"/></svg></div>
           <h2 class="step-title">
             <span class="en">Closing</span>
             <span class="es">Cierre</span>
