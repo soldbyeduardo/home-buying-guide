@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Buying Guide — Stellar Equity Real Estate</title>
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --navy: #071634;
+      --gold: #C9A028;
+      --gold-light: #f0d06a;
+      --white: #ffffff;
+      --soft-white: #F4F3F2;
+      --light-bg: #f5f6fa;
+      --green: #2e7d32;
+      --green-light: #e8f5e9;
+      --amber-bg: #fff7e0;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--light-bg);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ===== LANGUAGE TOGGLE ===== */
+    body.lang-en .es { display: none; }
+    body.lang-es .en { display: none; }
+
+    /* ===== SCREENS ===== */
+    .screen {
+      display: none;
+      min-height: 100vh;
+    }
+    .screen.active {
+      display: block;
+    }
+
+    /* ===== GLOBAL HEADER ===== */
+    #globalHeader {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .header-text-block {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .header-stellar {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .header-realestate {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 1.5px;
+    }
+
+    #langBtn {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s, color 0.2s;
+      min-height: 36px;
+    }
+
+    #langBtn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ===== CARD WRAPPER ===== */
+    .card-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* ===== WELCOME SCREEN ===== */
+    #screen-welcome {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 48px 24px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #screen-welcome.active {
+      display: flex;
+    }
+
+    .welcome-accent {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(201, 160, 40, 0.08);
+      pointer-events: none;
+    }
+
+    .welcome-accent-2 {
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(201, 160, 40, 0.06);
+      pointer-events: none;
+    }
+
+    .welcome-inner {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-logo-icon {
+      font-size: 52px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .welcome-stellar {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-bottom: 2px;
+    }
+
+    .welcome-realestate {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      margin-bottom: 4px;
+    }
+
+    .welcome-tagline {
+      font-size: 11px;
+      color: rgba(240, 208, 106, 0.7);
+      letter-spacing: 1.5px;
+      margin-bottom: 28px;
+    }
+
+    .welcome-congrats {
+      font-size: 22px;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .welcome-headline {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .welcome-body {
+      font-size: 15px;
+      color: var(--soft-white);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      opacity: 0.9;
+    }
+
+    .welcome-chips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .welcome-chip {
+      background: rgba(201, 160, 40, 0.12);
+      border: 1px solid rgba(201, 160, 40, 0.25);
+      border-radius: 10px;
+      padding: 12px 10px;
+      font-size: 13px;
+      color: var(--soft-white);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chip-icon {
+      font-size: 20px;
+    }
+
+    .chip-text {
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .btn-cta {
+      display: block;
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      height: 52px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      margin-bottom: 28px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-cta:active {
+      transform: translateY(0);
+    }
+
+    .welcome-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      text-align: center;
+    }
+
+    .welcome-footer-priority {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .welcome-footer-name {
+      font-size: 11px;
+      color: rgba(244, 243, 242, 0.55);
+      letter-spacing: 1.5px;
+    }
+
+    /* ===== OVERVIEW SCREEN ===== */
+    #screen-overview .card-wrap {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+
+    .overview-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .overview-headline {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .overview-body {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .step-card {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(7, 22, 52, 0.08);
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      border-left: 4px solid var(--gold);
+      transition: background 0.18s, transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .step-card:hover,
+    .step-card:active {
+      background: #fdf6e3;
+      transform: translateX(2px);
+    }
+
+    .step-circle {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-card-text {
+      flex: 1;
+    }
+
+    .step-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .step-card-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .step-card-arrow {
+      font-size: 18px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .overview-quote {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 13px;
+      font-style: italic;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .overview-quote-name {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-style: normal;
+      margin-top: 4px;
+    }
+
+    /* ===== STEP SCREENS ===== */
+    .step-screen-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 16px 40px;
+    }
+
+    /* Progress Bar */
+    .progress-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+
+    .progress-seg {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #ddd;
+      transition: background 0.3s;
+    }
+
+    .progress-seg.filled {
+      background: var(--gold);
+    }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1.5px solid var(--navy);
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      min-height: 40px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .back-btn:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* Step Icon + Title */
+    .step-icon-wrap {
+      width: 64px;
+      height: 64px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .step-subtitle {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* Section heading */
+    .section-heading {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+
+    /* Checkmark list */
+    .check-list {
+      margin-bottom: 24px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .check-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-mark {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Tips section */
+    .tips-section {
+      background: var(--amber-bg);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 28px;
+    }
+
+    .tips-heading {
+      font-size: 14px;
+      font-weight: 800;
+      color: #8a6200;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      color: #5c4400;
+      line-height: 1.5;
+    }
+
+    .tip-check {
+      color: #a07800;
+      font-weight: 900;
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Bottom nav */
+    .step-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .step-nav .back-btn {
+      margin-bottom: 0;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-next {
+      flex: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 0 16px;
+      cursor: pointer;
+      min-height: 48px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .btn-next:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ===== CLOSING SCREEN SPECIAL ===== */
+    .welcome-home-banner {
+      background: var(--gold);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .welcome-home-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .welcome-home-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .welcome-home-text {
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .btn-done {
+      flex: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 800;
+      border: none;
+      border-radius: 8px;
+      padding: 0 16px;
+      cursor: pointer;
+      min-height: 48px;
+      transition: background 0.18s;
+    }
+
+    .btn-done:hover {
+      background: var(--gold-light);
+    }
+
+    /* ===== UTILITIES ===== */
+    .mt-4 { margin-top: 16px; }
+    .mb-4 { margin-bottom: 16px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 520px) {
+      .card-wrap, .step-screen-inner {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+  <!-- ===== GLOBAL HEADER ===== -->
+  <header id="globalHeader" style="display:none;">
+    <div class="header-brand">
+      <span class="header-icon">🏠</span>
+      <div class="header-text-block">
+        <span class="header-stellar">STELLAR EQUITY</span>
+        <span class="header-realestate">REAL ESTATE</span>
+      </div>
+    </div>
+    <button id="langBtn" onclick="toggleLang()">EN</button>
+  </header>
+
+  <!-- ===== SCREEN 1: WELCOME ===== -->
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-accent"></div>
+    <div class="welcome-accent-2"></div>
+    <div class="welcome-inner">
+      <span class="welcome-logo-icon">🏠</span>
+      <div class="welcome-stellar">STELLAR EQUITY</div>
+      <div class="welcome-realestate">REAL ESTATE</div>
+      <div class="welcome-tagline">PEOPLE · OPPORTUNITY · A BRIGHTER TOMORROW</div>
+
+      <div class="welcome-congrats">
+        <span class="en">Congratulations!</span>
+        <span class="es">¡Felicidades!</span>
+      </div>
+
+      <h1 class="welcome-headline">
+        <span class="en">YOU'VE STARTED THE HOME BUYING PROCESS!</span>
+        <span class="es">¡HAS COMENZADO EL PROCESO DE COMPRA DE CASA!</span>
+      </h1>
+
+      <p class="welcome-body">
+        <span class="en">We're excited to be part of your journey. Here's what to expect and the next steps to get you to the finish line.</span>
+        <span class="es">Estamos emocionados de ser parte de tu camino. Aquí te explicamos qué esperar y los próximos pasos para llegar a la meta.</span>
+      </p>
+
+      <div class="welcome-chips">
+        <div class="welcome-chip">
+          <span class="chip-icon">🧭</span>
+          <span class="chip-text en">Guidance Every Step</span>
+          <span class="chip-text es">Guía en cada paso</span>
+        </div>
+        <div class="welcome-chip">
+          <span class="chip-icon">🤝</span>
+          <span class="chip-text en">Trusted Partners</span>
+          <span class="chip-text es">Socios de Confianza</span>
+        </div>
+        <div class="welcome-chip">
+          <span class="chip-icon">💬</span>
+          <span class="chip-text en">Clear Communication</span>
+          <span class="chip-text es">Comunicación Clara</span>
+        </div>
+        <div class="welcome-chip">
+          <span class="chip-icon">🏡</span>
+          <span class="chip-text en">Let's Get You Home!</span>
+          <span class="chip-text es">¡Vamos a tu Hogar!</span>
+        </div>
+      </div>
+
+      <button class="btn-cta" onclick="showScreen('screen-overview')">
+        <span class="en">See My Next Steps →</span>
+        <span class="es">Ver Mis Próximos Pasos →</span>
+      </button>
+
+      <div class="welcome-footer">
+        <div class="welcome-footer-priority">
+          <span class="en">Your Goals. Our Priority.</span>
+          <span class="es">Tus Metas. Nuestra Prioridad.</span>
+        </div>
+        <div class="welcome-footer-name">STELLAR EQUITY REAL ESTATE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 2: OVERVIEW ===== -->
+  <div id="screen-overview" class="screen">
+    <div class="card-wrap">
+      <p class="overview-label">
+        <span class="en">YOUR HOME BUYING JOURNEY</span>
+        <span class="es">TU CAMINO HACIA TU HOGAR</span>
+      </p>
+      <h2 class="overview-headline">
+        <span class="en">THE NEXT STEPS</span>
+        <span class="es">LOS PRÓXIMOS PASOS</span>
+      </h2>
+      <p class="overview-body">
+        <span class="en">Here's an overview of the process. Tap each step to learn more.</span>
+        <span class="es">Aquí tienes un resumen del proceso. Toca cada paso para aprender más.</span>
+      </p>
+
+      <!-- Step 1 -->
+      <div class="step-card" onclick="showScreen('screen-step-1')">
+        <div class="step-circle">1</div>
+        <div class="step-card-text">
+          <div class="step-card-title">
+            <span class="en">Escrow Opened</span>
+            <span class="es">Escrow Abierto</span>
+          </div>
+          <div class="step-card-desc">
+            <span class="en">Contract is signed and earnest money is deposited.</span>
+            <span class="es">El contrato se firma y se entrega el depósito de garantía.</span>
+          </div>
+        </div>
+        <div class="step-card-arrow">→</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card" onclick="showScreen('screen-step-2')">
+        <div class="step-circle">2</div>
+        <div class="step-card-text">
+          <div class="step-card-title">
+            <span class="en">Inspection Period</span>
+            <span class="es">Período de Inspección</span>
+          </div>
+          <div class="step-card-desc">
+            <span class="en">We inspect the property and review the condition.</span>
+            <span class="es">Inspeccionamos la propiedad y revisamos su condición.</span>
+          </div>
+        </div>
+        <div class="step-card-arrow">→</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card" onclick="showScreen('screen-step-3')">
+        <div class="step-circle">3</div>
+        <div class="step-card-text">
+          <div class="step-card-title">
+            <span class="en">Survey</span>
+            <span class="es">Estudio Topográfico</span>
+          </div>
+          <div class="step-card-desc">
+            <span class="en">Confirms property boundaries and checks for any issues.</span>
+            <span class="es">Confirma los límites de la propiedad y verifica posibles problemas.</span>
+          </div>
+        </div>
+        <div class="step-card-arrow">→</div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-card" onclick="showScreen('screen-step-4')">
+        <div class="step-circle">4</div>
+        <div class="step-card-text">
+          <div class="step-card-title">
+            <span class="en">Appraisal</span>
+            <span class="es">Avalúo</span>
+          </div>
+          <div class="step-card-desc">
+            <span class="en">Lender confirms the home's value.</span>
+            <span class="es">El prestamista confirma el valor de la casa.</span>
+          </div>
+        </div>
+        <div class="step-card-arrow">→</div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step-card" onclick="showScreen('screen-step-5')">
+        <div class="step-circle">5</div>
+        <div class="step-card-text">
+          <div class="step-card-title">
+            <span class="en">Closing</span>
+            <span class="es">Cierre</span>
+          </div>
+          <div class="step-card-desc">
+            <span class="en">Final documents are signed and you get the keys!</span>
+            <span class="es">Se firman los documentos finales y ¡recibes las llaves!</span>
+          </div>
+        </div>
+        <div class="step-card-arrow">→</div>
+      </div>
+
+      <div class="overview-quote">
+        <div>
+          <span class="en">"A SMOOTHER PROCESS LEADS TO A BRIGHTER TOMORROW."</span>
+          <span class="es">"UN PROCESO MÁS FÁCIL LLEVA A UN MEJOR MAÑANA."</span>
+        </div>
+        <div class="overview-quote-name">STELLAR EQUITY REAL ESTATE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 3: STEP 1 — ESCROW OPENED ===== -->
+  <div id="screen-step-1" class="screen">
+    <div class="step-screen-inner">
+      <p class="progress-label">
+        <span class="en">STEP 1 OF 5</span>
+        <span class="es">PASO 1 DE 5</span>
+      </p>
+      <div class="progress-bar-row">
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+
+      <div class="step-icon-wrap">📄</div>
+
+      <h2 class="step-title">
+        <span class="en">Escrow Opened</span>
+        <span class="es">Escrow Abierto</span>
+      </h2>
+      <p class="step-subtitle">
+        <span class="en">Contract is signed and the earnest money deposit is submitted.</span>
+        <span class="es">Se firma el contrato y se entrega el depósito de garantía.</span>
+      </p>
+
+      <div class="section-heading">
+        <span class="en">What Happens Now?</span>
+        <span class="es">¿Qué Pasa Ahora?</span>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">The earnest money deposit is delivered to the title company.</span>
+            <span class="es">El depósito de garantía se entrega a la compañía de título.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">The title company opens escrow and coordinates the entire closing process.</span>
+            <span class="es">La compañía de título abre el escrow y coordina todo el proceso de cierre.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">You'll typically have 1–3 days to submit the deposit (per contract terms).</span>
+            <span class="es">Generalmente tienes 1–3 días para entregar el depósito (según los términos del contrato).</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">Once received, we move to the inspection period.</span>
+            <span class="es">Una vez recibido, pasamos al período de inspección.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-heading">
+          💡 <span class="en">Tips For You</span><span class="es">Consejos Para Ti</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Keep all your contact information updated.</span>
+            <span class="es">Mantén toda tu información de contacto actualizada.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Avoid making large purchases or opening new credit cards.</span>
+            <span class="es">Evita hacer compras grandes o abrir nuevas tarjetas de crédito.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Continue to respond quickly to any requests from your lender or title company.</span>
+            <span class="es">Sigue respondiendo rápidamente a cualquier solicitud de tu prestamista o compañía de título.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Let us know if you have any questions!</span>
+            <span class="es">¡Avísanos si tienes alguna pregunta!</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+        <button class="btn-next" onclick="showScreen('screen-step-2')">
+          <span class="en">Next: Inspection →</span>
+          <span class="es">Siguiente: Inspección →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 4: STEP 2 — INSPECTION PERIOD ===== -->
+  <div id="screen-step-2" class="screen">
+    <div class="step-screen-inner">
+      <p class="progress-label">
+        <span class="en">STEP 2 OF 5</span>
+        <span class="es">PASO 2 DE 5</span>
+      </p>
+      <div class="progress-bar-row">
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+
+      <div class="step-icon-wrap">🔍</div>
+
+      <h2 class="step-title">
+        <span class="en">Inspection Period</span>
+        <span class="es">Período de Inspección</span>
+      </h2>
+      <p class="step-subtitle">
+        <span class="en">We inspect the property and review the condition.</span>
+        <span class="es">Inspeccionamos la propiedad y revisamos su condición.</span>
+      </p>
+
+      <div class="section-heading">
+        <span class="en">What Happens Now?</span>
+        <span class="es">¿Qué Pasa Ahora?</span>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">You can hire your own licensed home inspector or use one we recommend.</span>
+            <span class="es">Puedes contratar tu propio inspector o usar uno que recomendemos.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">The inspector will review the roof, plumbing, electrical, HVAC, and more.</span>
+            <span class="es">El inspector revisará el techo, plomería, electricidad, sistema de clima, y más.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">If any issues are found, we can request repairs, credits, or negotiate terms with the seller.</span>
+            <span class="es">Si se encuentran problemas, podemos solicitar reparaciones, créditos, o negociar con el vendedor.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">This period is usually the first 10 days of the contract (depending on terms).</span>
+            <span class="es">Este período generalmente es los primeros 10 días del contrato (según los términos).</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-heading">
+          💡 <span class="en">Tips For You</span><span class="es">Consejos Para Ti</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Schedule the inspection as soon as possible (we only have a limited time).</span>
+            <span class="es">Programa la inspección lo antes posible (tenemos tiempo limitado).</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Be present if possible, so you can ask questions.</span>
+            <span class="es">Esté presente si puedes, así puedes hacer preguntas.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">Keep a list of any concerns you'd like the inspector to check.</span>
+            <span class="es">Haz una lista de cualquier preocupación que quieras que el inspector revise.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">We'll review the report together and discuss next steps.</span>
+            <span class="es">Revisaremos el informe juntos y discutiremos los próximos pasos.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+        <button class="btn-next" onclick="showScreen('screen-step-3')">
+          <span class="en">Next: Survey →</span>
+          <span class="es">Siguiente: Topografía →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 5: STEP 3 — SURVEY ===== -->
+  <div id="screen-step-3" class="screen">
+    <div class="step-screen-inner">
+      <p class="progress-label">
+        <span class="en">STEP 3 OF 5</span>
+        <span class="es">PASO 3 DE 5</span>
+      </p>
+      <div class="progress-bar-row">
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg"></div>
+        <div class="progress-seg"></div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+
+      <div class="step-icon-wrap">🗺️</div>
+
+      <h2 class="step-title">
+        <span class="en">Survey (Land Survey)</span>
+        <span class="es">Estudio Topográfico</span>
+      </h2>
+      <p class="step-subtitle">
+        <span class="en">The title company orders a survey to confirm the exact property boundaries, fences, access points, and any possible encroachments.</span>
+        <span class="es">La compañía de título ordena un estudio para confirmar los límites exactos de la propiedad, cercas, puntos de acceso, y posibles invasiones.</span>
+      </p>
+
+      <div class="section-heading">
+        <span class="en">What Happens Now?</span>
+        <span class="es">¿Qué Pasa Ahora?</span>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">Ordered by the title company (usually included in your loan).</span>
+            <span class="es">Ordenado por la compañía de título (generalmente incluido en tu préstamo).</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">Required before closing.</span>
+            <span class="es">Requerido antes del cierre.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">We'll let you know once it's completed.</span>
+            <span class="es">Te avisaremos cuando esté completado.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-heading">
+          💡 <span class="en">Tips For You</span><span class="es">Consejos Para Ti</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">No action needed from you for this step — we'll coordinate everything.</span>
+            <span class="es">No necesitas hacer nada en este paso — nosotros coordinamos todo.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+        <button class="btn-next" onclick="showScreen('screen-step-4')">
+          <span class="en">Next: Appraisal →</span>
+          <span class="es">Siguiente: Avalúo →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 6: STEP 4 — APPRAISAL ===== -->
+  <div id="screen-step-4" class="screen">
+    <div class="step-screen-inner">
+      <p class="progress-label">
+        <span class="en">STEP 4 OF 5</span>
+        <span class="es">PASO 4 DE 5</span>
+      </p>
+      <div class="progress-bar-row">
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg"></div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+
+      <div class="step-icon-wrap">🏠</div>
+
+      <h2 class="step-title">
+        <span class="en">Appraisal</span>
+        <span class="es">Avalúo</span>
+      </h2>
+      <p class="step-subtitle">
+        <span class="en">The lender orders an appraisal to confirm the home's value matches the purchase price.</span>
+        <span class="es">El prestamista ordena un avalúo para confirmar que el valor de la casa coincide con el precio de compra.</span>
+      </p>
+
+      <div class="section-heading">
+        <span class="en">What Happens Now?</span>
+        <span class="es">¿Qué Pasa Ahora?</span>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">A licensed appraiser will inspect the property.</span>
+            <span class="es">Un valuador licenciado inspeccionará la propiedad.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">The value must meet or exceed the purchase price.</span>
+            <span class="es">El valor debe ser igual o mayor al precio de compra.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">If the value comes in as expected, we move to the final step.</span>
+            <span class="es">Si el valor es el esperado, pasamos al paso final.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-heading">
+          💡 <span class="en">Tips For You</span><span class="es">Consejos Para Ti</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">You don't need to be present during the appraisal.</span>
+            <span class="es">No necesitas estar presente durante el avalúo.</span>
+          </span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-check">✓</span>
+          <span>
+            <span class="en">If the value comes in low, don't worry — we have options to negotiate.</span>
+            <span class="es">Si el valor es menor de lo esperado, no te preocupes — tenemos opciones para negociar.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+        <button class="btn-next" onclick="showScreen('screen-step-5')">
+          <span class="en">Next: Closing →</span>
+          <span class="es">Siguiente: Cierre →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCREEN 7: STEP 5 — CLOSING ===== -->
+  <div id="screen-step-5" class="screen">
+    <div class="step-screen-inner">
+      <p class="progress-label">
+        <span class="en">STEP 5 OF 5</span>
+        <span class="es">PASO 5 DE 5</span>
+      </p>
+      <div class="progress-bar-row">
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+        <div class="progress-seg filled"></div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Back</span><span class="es">Atrás</span></button>
+
+      <div class="step-icon-wrap">🔑</div>
+
+      <h2 class="step-title">
+        <span class="en">Closing 🎉</span>
+        <span class="es">Cierre 🎉</span>
+      </h2>
+      <p class="step-subtitle">
+        <span class="en">The final step!</span>
+        <span class="es">¡El paso final!</span>
+      </p>
+
+      <div class="section-heading">
+        <span class="en">What Happens Now?</span>
+        <span class="es">¿Qué Pasa Ahora?</span>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">All final documents are signed.</span>
+            <span class="es">Se firman todos los documentos finales.</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">You'll bring a cashier's check for your closing costs (if required by your lender).</span>
+            <span class="es">Llevarás un cheque de caja para tus costos de cierre (si tu prestamista lo requiere).</span>
+          </span>
+        </div>
+        <div class="check-item">
+          <span class="check-mark">✓</span>
+          <span>
+            <span class="en">The keys are delivered and ownership officially transfers to you.</span>
+            <span class="es">Las llaves se entregan y la propiedad oficialmente pasa a ser tuya.</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="welcome-home-banner">
+        <div class="welcome-home-icon">🏡</div>
+        <div class="welcome-home-title">
+          <span class="en">WELCOME HOME!</span>
+          <span class="es">¡BIENVENIDO A CASA!</span>
+        </div>
+        <div class="welcome-home-text">
+          <span class="en">We're honored to help you reach this milestone. Thank you for trusting us!</span>
+          <span class="es">Es un honor ayudarte a alcanzar este hito. ¡Gracias por confiar en nosotros!</span>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="back-btn" onclick="showScreen('screen-overview')">← <span class="en">Overview</span><span class="es">Resumen</span></button>
+        <button class="btn-done" onclick="showScreen('screen-overview')">
+          <span class="en">Done!</span>
+          <span class="es">¡Listo!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== SCREEN NAVIGATION =====
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(function(s) {
+        s.classList.remove('active');
+      });
+      var screen = document.getElementById(id);
+      if (screen) screen.classList.add('active');
+
+      var header = document.getElementById('globalHeader');
+      if (id === 'screen-welcome') {
+        header.style.display = 'none';
+      } else {
+        header.style.display = '';
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    // ===== LANGUAGE TOGGLE =====
+    function toggleLang() {
+      var body = document.body;
+      var isEN = body.classList.contains('lang-en');
+      body.classList.remove('lang-en', 'lang-es');
+      if (isEN) {
+        body.classList.add('lang-es');
+        document.getElementById('langBtn').textContent = 'ES';
+        localStorage.setItem('lang', 'es');
+      } else {
+        body.classList.add('lang-en');
+        document.getElementById('langBtn').textContent = 'EN';
+        localStorage.setItem('lang', 'en');
+      }
+    }
+
+    // ===== RESTORE LANGUAGE ON LOAD =====
+    (function() {
+      var savedLang = localStorage.getItem('lang') || 'en';
+      document.body.className = 'lang-' + savedLang;
+      var btn = document.getElementById('langBtn');
+      if (btn) btn.textContent = savedLang.toUpperCase();
+    })();
+  </script>
+</body>
+</html>
