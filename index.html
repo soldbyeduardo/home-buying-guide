@@ -794,6 +794,132 @@
     @media (min-width: 1024px) {
       .step-screen-inner {
         padding: 36px 40px 64px;
+        max-width: 1080px;
+      }
+
+      .step-title {
+        font-size: 36px;
+      }
+
+      .step-icon-wrap {
+        width: 140px;
+        height: 140px;
+      }
+
+      .step-icon-wrap svg {
+        width: 68px;
+        height: 68px;
+      }
+
+      .step-card {
+        padding: 28px 16px 24px;
+      }
+
+      .step-icon-circle {
+        width: 68px;
+        height: 68px;
+      }
+
+      .step-icon-circle svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .step-card-title {
+        font-size: 16px;
+      }
+
+      .step-num-circle {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+
+      .overview-headline {
+        font-size: 42px;
+      }
+
+      .overview-wrap {
+        padding: 48px 40px 64px;
+      }
+
+      .welcome-inner {
+        max-width: 600px;
+      }
+
+      .welcome-headline {
+        font-size: 42px;
+      }
+
+      .welcome-congrats {
+        font-size: 26px;
+      }
+
+      #screen-welcome svg[viewBox="0 0 200 160"] {
+        width: 200px !important;
+      }
+
+      .pro-tip {
+        padding: 28px;
+      }
+
+      .step-right {
+        min-width: 300px;
+      }
+
+      .check-item {
+        font-size: 16px;
+        padding: 12px 0;
+      }
+    }
+
+    /* ===== MOBILE POLISH ===== */
+    @media (max-width: 767px) {
+      .step-icon-wrap {
+        margin: 0 auto 20px;
+      }
+
+      .pro-tip {
+        border-width: 2px;
+        border-color: #C9A028;
+        box-shadow: 0 4px 16px rgba(201,160,40,0.15);
+      }
+
+      .pro-tip-heading {
+        font-size: 16px;
+        margin-bottom: 14px;
+      }
+
+      .btn-next {
+        font-size: 16px;
+        min-height: 54px;
+      }
+
+      .btn-done {
+        font-size: 16px;
+        min-height: 54px;
+      }
+
+      .progress-bar-row {
+        margin-bottom: 16px;
+      }
+
+      .progress-seg {
+        height: 8px;
+      }
+
+      .step-title {
+        font-size: 28px;
+      }
+
+      .step-icon-wrap {
+        width: 100px;
+        height: 100px;
+      }
+
+      .step-icon-wrap svg {
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
@@ -941,7 +1067,7 @@
         <!-- Step 1 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-1')">
           <div class="step-num-circle">1</div>
-          <div class="step-icon-circle">📄</div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="7" y="3" width="18" height="24" rx="2" fill="#C9A028" fill-opacity="0.15" stroke="#C9A028" stroke-width="1.8"/><line x1="11" y1="10" x2="21" y2="10" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="14" x2="21" y2="14" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="17" y2="18" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><path d="M11 22 C13 20 15 24 17 22 C19 20 21 23 21 23" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" fill="none"/><polyline points="20,3 25,8 20,8" fill="none" stroke="#C9A028" stroke-width="1.5"/></svg></div>
           <div class="step-card-title">
             <span class="en">Escrow Opened</span>
             <span class="es">Escrow Abierto</span>
@@ -956,7 +1082,7 @@
         <!-- Step 2 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-2')">
           <div class="step-num-circle">2</div>
-          <div class="step-icon-circle">🔍</div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="13" cy="13" r="9" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.1"/><line x1="20" y1="20" x2="27" y2="27" stroke="#C9A028" stroke-width="2.5" stroke-linecap="round"/><rect x="9" y="13" width="8" height="6" rx="1" fill="#071634" fill-opacity="0.18" stroke="#071634" stroke-width="1.2"/><polygon points="8,13 13,9 18,13" fill="#C9A028" fill-opacity="0.85"/></svg></div>
           <div class="step-card-title">
             <span class="en">Inspection Period</span>
             <span class="es">Período de Inspección</span>
@@ -971,7 +1097,7 @@
         <!-- Step 3 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-3')">
           <div class="step-num-circle">3</div>
-          <div class="step-icon-circle">🗺️</div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="4" y="5" width="24" height="22" rx="2" fill="#C9A028" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.8"/><line x1="4" y1="14" x2="28" y2="14" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><line x1="16" y1="5" x2="16" y2="27" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><rect x="7" y="8" width="10" height="9" rx="1" fill="none" stroke="#C9A028" stroke-width="1.8" stroke-dasharray="2,2"/><circle cx="22" cy="11" r="2.5" fill="#C9A028"/><line x1="22" y1="13.5" x2="22" y2="17" stroke="#C9A028" stroke-width="1.5"/></svg></div>
           <div class="step-card-title">
             <span class="en">Survey</span>
             <span class="es">Estudio Topográfico</span>
@@ -986,7 +1112,7 @@
         <!-- Step 4 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-4')">
           <div class="step-num-circle">4</div>
-          <div class="step-icon-circle">🏠</div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><rect x="5" y="16" width="16" height="12" rx="1" fill="#C9A028" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.8"/><polygon points="3,16 13,7 23,16" fill="#C9A028" fill-opacity="0.8"/><rect x="10" y="22" width="6" height="6" rx="1" fill="#071634" fill-opacity="0.25"/><rect x="23" y="22" width="3" height="6" rx="1" fill="#071634" fill-opacity="0.3"/><rect x="27" y="19" width="3" height="9" rx="1" fill="#C9A028"/><polyline points="22,22 25,17 28,17" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
           <div class="step-card-title">
             <span class="en">Appraisal</span>
             <span class="es">Avalúo</span>
@@ -1001,7 +1127,7 @@
         <!-- Step 5 -->
         <button type="button" class="step-card" onclick="showScreen('screen-step-5')">
           <div class="step-num-circle">5</div>
-          <div class="step-icon-circle">🔑</div>
+          <div class="step-icon-circle"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28"><circle cx="11" cy="13" r="6" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.15"/><line x1="17" y1="13" x2="28" y2="13" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="13" x2="23" y2="17" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="13" x2="27" y2="16" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><rect x="17" y="19" width="10" height="8" rx="1" fill="#071634" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.5"/><polygon points="16,19 22,15 28,19" fill="#C9A028" fill-opacity="0.75"/></svg></div>
           <div class="step-card-title">
             <span class="en">Closing</span>
             <span class="es">Cierre</span>
@@ -1042,7 +1168,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap">📄</div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="7" y="3" width="18" height="24" rx="2" fill="#C9A028" fill-opacity="0.15" stroke="#C9A028" stroke-width="1.8"/><line x1="11" y1="10" x2="21" y2="10" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="14" x2="21" y2="14" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="17" y2="18" stroke="#071634" stroke-width="1.5" stroke-linecap="round"/><path d="M11 22 C13 20 15 24 17 22 C19 20 21 23 21 23" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" fill="none"/><polyline points="20,3 25,8 20,8" fill="none" stroke="#C9A028" stroke-width="1.5"/></svg></div>
           <h2 class="step-title">
             <span class="en">Escrow Opened</span>
             <span class="es">Escrow Abierto</span>
@@ -1150,7 +1276,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap">🔍</div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="13" cy="13" r="9" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.1"/><line x1="20" y1="20" x2="27" y2="27" stroke="#C9A028" stroke-width="2.5" stroke-linecap="round"/><rect x="9" y="13" width="8" height="6" rx="1" fill="#071634" fill-opacity="0.18" stroke="#071634" stroke-width="1.2"/><polygon points="8,13 13,9 18,13" fill="#C9A028" fill-opacity="0.85"/></svg></div>
           <h2 class="step-title">
             <span class="en">Inspection Period</span>
             <span class="es">Período de Inspección</span>
@@ -1251,7 +1377,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap">🗺️</div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="4" y="5" width="24" height="22" rx="2" fill="#C9A028" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.8"/><line x1="4" y1="14" x2="28" y2="14" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><line x1="16" y1="5" x2="16" y2="27" stroke="#071634" stroke-width="1" opacity="0.35" stroke-dasharray="2,2"/><rect x="7" y="8" width="10" height="9" rx="1" fill="none" stroke="#C9A028" stroke-width="1.8" stroke-dasharray="2,2"/><circle cx="22" cy="11" r="2.5" fill="#C9A028"/><line x1="22" y1="13.5" x2="22" y2="17" stroke="#C9A028" stroke-width="1.5"/></svg></div>
           <h2 class="step-title">
             <span class="en">Survey</span>
             <span class="es">Estudio Topográfico</span>
@@ -1338,7 +1464,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap">🏠</div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><rect x="5" y="16" width="16" height="12" rx="1" fill="#C9A028" fill-opacity="0.12" stroke="#C9A028" stroke-width="1.8"/><polygon points="3,16 13,7 23,16" fill="#C9A028" fill-opacity="0.8"/><rect x="10" y="22" width="6" height="6" rx="1" fill="#071634" fill-opacity="0.25"/><rect x="23" y="22" width="3" height="6" rx="1" fill="#071634" fill-opacity="0.3"/><rect x="27" y="19" width="3" height="9" rx="1" fill="#C9A028"/><polyline points="22,22 25,17 28,17" stroke="#C9A028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
           <h2 class="step-title">
             <span class="en">Appraisal</span>
             <span class="es">Avalúo</span>
@@ -1432,7 +1558,7 @@
 
       <div class="step-two-col">
         <div class="step-left">
-          <div class="step-icon-wrap">🔑</div>
+          <div class="step-icon-wrap"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52"><circle cx="11" cy="13" r="6" stroke="#C9A028" stroke-width="2" fill="#C9A028" fill-opacity="0.15"/><line x1="17" y1="13" x2="28" y2="13" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="13" x2="23" y2="17" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><line x1="27" y1="13" x2="27" y2="16" stroke="#C9A028" stroke-width="2" stroke-linecap="round"/><rect x="17" y="19" width="10" height="8" rx="1" fill="#071634" fill-opacity="0.1" stroke="#C9A028" stroke-width="1.5"/><polygon points="16,19 22,15 28,19" fill="#C9A028" fill-opacity="0.75"/></svg></div>
           <h2 class="step-title">
             <span class="en">Closing</span>
             <span class="es">Cierre</span>
