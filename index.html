@@ -1216,6 +1216,79 @@
         justify-content: center;
       }
     }
+
+    /* ===== FINAL RECONSTRUCTION — SCREEN BY SCREEN ===== */
+
+    /* WELCOME DESKTOP: gradient-blended house photo (unified, not two hard halves) */
+    @media (min-width: 768px) {
+      #screen-welcome::after {
+        background:
+          linear-gradient(to right, #071634 0%, rgba(7,22,52,0.80) 25%, rgba(7,22,52,0.30) 60%, rgba(7,22,52,0.10) 100%),
+          url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&auto=format&fit=crop&q=80') center / cover no-repeat;
+      }
+    }
+
+    /* WELCOME MOBILE: house photo blends in from the bottom */
+    @media (max-width: 767px) {
+      #screen-welcome {
+        background:
+          linear-gradient(to bottom, #071634 40%, rgba(7,22,52,0.88) 68%, rgba(7,22,52,0.55) 100%),
+          url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&auto=format&fit=crop&q=80') bottom center / cover no-repeat;
+      }
+      #screen-welcome::after { display: none; }
+    }
+
+    /* OVERVIEW: centered header + stronger card modules */
+    .step-card {
+      box-shadow: 0 8px 32px rgba(7,22,52,0.13), 0 2px 8px rgba(7,22,52,0.07);
+      background: #f7f9fd;
+      border-top-width: 4px;
+    }
+
+    @media (min-width: 768px) {
+      .overview-label,
+      .overview-headline,
+      .overview-body {
+        text-align: center;
+      }
+    }
+
+    /* STEP PAGES: compact unified composition */
+    .step-screen-inner {
+      max-width: 960px !important;
+    }
+
+    /* Progress dots: compact + centered, not stretched full-width */
+    .progress-bar-row {
+      max-width: 220px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 768px) {
+      /* Tighter two-column: checklist + pro tip feel adjacent */
+      .step-two-col {
+        gap: 24px !important;
+      }
+      .step-right {
+        flex: 0 0 270px !important;
+        min-width: auto !important;
+        max-width: 270px !important;
+      }
+      .step-left {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+      }
+      /* Back button + progress: side by side using grid */
+      .progress-label {
+        display: none;
+      }
+      /* Compact step header row */
+      .back-btn-top {
+        display: flex;
+        margin-bottom: 8px;
+      }
+    }
   </style>
 </head>
 <body class="lang-en">
