@@ -1219,47 +1219,25 @@
 
     /* ===== FINAL RECONSTRUCTION — SCREEN BY SCREEN ===== */
 
-    /* WELCOME DESKTOP: unified dark hero — house SVG floats on right over gradient */
+    /* WELCOME DESKTOP: real luxury home photo with navy-to-transparent gradient blend */
     @media (min-width: 768px) {
-      #screen-welcome {
-        position: relative;
-      }
       #screen-welcome::after {
         background:
-          radial-gradient(ellipse at 52% 62%, rgba(201,160,40,0.22) 0%, transparent 55%),
-          radial-gradient(ellipse at 75% 30%, rgba(201,160,40,0.08) 0%, transparent 38%),
-          linear-gradient(145deg, #0b2050 0%, #071634 100%);
+          linear-gradient(to right, #071634 0%, rgba(7,22,52,0.72) 18%, rgba(7,22,52,0.22) 52%, rgba(7,22,52,0.04) 100%),
+          url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1100&auto=format&fit=crop&q=85') center / cover no-repeat;
       }
-      /* Show house SVG absolutely positioned on the right panel */
-      .welcome-inner > svg[viewBox="0 0 200 160"] {
-        display: block !important;
-        position: absolute;
-        right: 3%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 400px !important;
-        max-width: 42% !important;
-        height: auto !important;
-        margin: 0 !important;
-        z-index: 2;
-        pointer-events: none;
-        filter: drop-shadow(0 20px 60px rgba(201,160,40,0.40)) !important;
-        opacity: 0.92;
-      }
+      .welcome-inner > svg[viewBox="0 0 200 160"] { display: none; }
     }
 
-    /* WELCOME MOBILE: solid navy — SVG shows centered in flow */
+    /* WELCOME MOBILE: house photo fades in from bottom behind navy */
     @media (max-width: 767px) {
       #screen-welcome {
-        background: linear-gradient(160deg, #071634 0%, #0d1e4a 60%, #071634 100%);
+        background:
+          linear-gradient(to bottom, #071634 35%, rgba(7,22,52,0.82) 65%, rgba(7,22,52,0.5) 100%),
+          url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&auto=format&fit=crop&q=80') bottom center / cover no-repeat;
       }
       #screen-welcome::after { display: none; }
-      .welcome-inner > svg[viewBox="0 0 200 160"] {
-        display: block;
-        width: 160px;
-        height: auto;
-        margin: 0 auto 24px;
-      }
+      .welcome-inner > svg[viewBox="0 0 200 160"] { display: none !important; }
     }
 
     /* OVERVIEW: centered header + stronger card modules */
